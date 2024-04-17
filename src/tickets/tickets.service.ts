@@ -23,13 +23,19 @@ export class TicketsService {
     return await this.ticketsRepository.find();
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     return await this.ticketsRepository.findOne({
       where: { id }
     });
   }
 
-  async update(id: number, updateTicketDto: UpdateTicketDto) {
+  async findByPriority(priority: string) {
+    return await this.ticketsRepository.count({
+      where: { priority }
+    });
+  }
+
+  async update(id: string, updateTicketDto: UpdateTicketDto) {
     const ticket = await this.findOne(id);
     if(!ticket){
       throw new NotFoundException()
@@ -39,7 +45,7 @@ export class TicketsService {
     return await this.ticketsRepository.save(ticket)
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     const ticket = await this.findOne(id);
     if(!ticket){
       throw new NotFoundException()
