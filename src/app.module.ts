@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { JobsModule } from './jobs/jobs.module';
+import { TicketsModule } from './tickets/tickets.module';
 import { ConfigModule } from '@nestjs/config';
 import {config} from './orm.config'
 
@@ -13,7 +13,7 @@ import {config} from './orm.config'
       isGlobal: true,
     }),
     TypeOrmModule.forRoot(config),
-    JobsModule,
+    TicketsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
